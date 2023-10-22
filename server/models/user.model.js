@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema(
     },
   },
   {
-    timestaps: true,
+    timestamps: true,
   }
 );
 
