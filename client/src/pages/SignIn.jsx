@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {signInStart, signInFailure, signInSuccess} from '../redux/user/user.slice';
 
 import {Link, useNavigate} from 'react-router-dom';
+import OAuth from '../components/OAuth';
 
 export default function SignIn() {
 
@@ -52,11 +53,12 @@ export default function SignIn() {
         <input type="password" name = 'password' placeholder='password'  className='border p-3 rounded-lg'onChange={handleChange}/>
 
         <button disabled = {loading} className='bg-slate-700 rounded-lg text-white p-3 uppercase hover:opacity-95 disabled:opacity-80'>Sign In</button>
+        <OAuth />
       </form>
 
       <div className='flex gap-2'>
         Dont have an Account?
-        <Link to={'/signup'}><span className='text-blue-700'>sign up</span></Link>
+        <Link to={'/sign-up'}><span className='text-blue-700'>sign up</span></Link>
       </div>
 
       <div>
