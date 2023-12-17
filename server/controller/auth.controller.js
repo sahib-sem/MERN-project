@@ -78,8 +78,8 @@ export const signin = async (req, res, next) => {
 
 export const googleAuth = async (req, res, next) => {
 
-    const {name, email, imageUrl} = req.body;
-
+    const {name, email, photo} = req.body;
+    console.log(photo)
     const user = await User.findOne({email});
     
     if (user){
@@ -106,7 +106,7 @@ export const googleAuth = async (req, res, next) => {
             username,
             email,
             password: hashedPassword,
-            avatar: imageUrl
+            avatar: photo
         });
 
         await newUser.save();
