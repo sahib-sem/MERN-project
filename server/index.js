@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
 
 
 const app = express();
-
+app.use(express.json())
 
 const port = 3000
 
@@ -24,3 +24,16 @@ app.listen(port, () => {
 
 app.use('/api/user' , userRouter)
 app.use('/api/auth', authRouter)
+
+// global error handling
+
+app.use((err, req, res, next) => {
+
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'internal server error';
+
+  res.status(statusCode).json({
+    success: false,
+    message
+  })
+} )
