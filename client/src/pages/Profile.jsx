@@ -71,7 +71,7 @@ export default function Profile() {
 
       const data = await res.json();
 
-      if (!data.success){
+      if (!data.success) {
         dispatch(updateUserFailure(data.message));
         return;
       }
@@ -83,7 +83,6 @@ export default function Profile() {
     }
   };
 
-  
   return (
     <div className="max-w-lg mx-auto p-3">
       <h1 className="text-center font-semibold text-3xl my-7"> Profile</h1>
@@ -142,8 +141,11 @@ export default function Profile() {
             setFormData({ ...formData, [e.target.name]: e.target.value })
           }
         />
-        <button disabled = {user.loading} className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95">
-          {user.loading? 'Loading...' : 'Update'}
+        <button
+          disabled={user.loading}
+          className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95"
+        >
+          {user.loading ? "Loading..." : "Update"}
         </button>
       </form>
 
@@ -152,9 +154,11 @@ export default function Profile() {
         <span className="text-red-700 cursor-pointer"> Sign Out</span>
       </div>
 
-      {user.error && (<p className="text-red-700 mt-5">{user.error}</p>)}
+      {user.error && <p className="text-red-700 mt-5">{user.error}</p>}
 
-      {user_success && (<p className="text-green-700">User updated successfully</p>) }
+      {user_success && (
+        <p className="text-green-700">User updated successfully</p>
+      )}
     </div>
   );
 }
