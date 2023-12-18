@@ -17,6 +17,9 @@ import {
   deleteUserFailure,
   deleteUserStart,
   deleteUserSuccess,
+  signOutUserFailure,
+  signOutUserStart,
+  signOutUserSuccess,
 } from "../redux/user/user.slice";
 
 export default function Profile() {
@@ -107,7 +110,32 @@ export default function Profile() {
 
 
   }
-  const handleSignOut = async () => {}
+  const handleSignOut = async () => {
+
+    try {
+
+      dispatch(signOutUserStart());
+
+      const res = await fetch('/api/auth/signout');
+
+      const data = await res.json();
+
+      if (!data.success) {
+        dispatch(signOutUserFailure(data.message));
+        return;
+      }
+
+      dispatch(signOutUserSuccess(data.message))
+
+    }
+    catch (err) {
+      
+      dispatch(signOutUserFailure(err.message))
+    }
+    
+
+
+  }
 
   return (
     <div className="max-w-lg mx-auto p-3">
