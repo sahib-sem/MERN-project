@@ -2,7 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import userRouter from './routes/user.route.js';
-import authRouter from './routes/auth.route.js'
+import authRouter from './routes/auth.route.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
@@ -22,8 +23,10 @@ app.listen(port, () => {
   console.log(`listening on port ${port} !!`);
 });
 
-app.use('/api/user' , userRouter)
+app.use(cookieParser())
+app.use('/api' , userRouter)
 app.use('/api/auth', authRouter)
+
 
 // global error handling
 
